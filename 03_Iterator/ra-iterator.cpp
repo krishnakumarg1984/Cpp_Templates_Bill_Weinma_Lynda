@@ -4,6 +4,9 @@
 #include <vector>
 using namespace std;
 
+// Random access iterator is the most complete iterator of them all. offers
+// all the functionality of a C-pointer
+
 void message(const char * m) { cout << m << endl; }
 void message(const char * m, int i) { cout << m << ": " << i << endl; }
 
@@ -12,19 +15,19 @@ int main() {
     vector<int>::iterator it1;   // iterator object
 
     // iterate forward
-    for(it1 = v1.begin(); it1 != v1.end(); ++it1) {
+    for (it1 = v1.begin(); it1 != v1.end(); ++it1) {
         cout << *it1 << " ";
     }
     cout << endl;
 
     // iterate backward
-    for(it1 = v1.end(); it1 != v1.begin();) {
+    for (it1 = v1.end(); it1 != v1.begin();) {
         cout << *--it1 << " ";
     }
     cout << endl;
 
     // range-based for loop
-    for(int i : v1) {
+    for (int i : v1) {
         cout << i << " ";
     }
     cout << endl;
