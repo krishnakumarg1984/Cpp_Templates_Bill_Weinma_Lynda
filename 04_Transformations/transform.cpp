@@ -19,7 +19,7 @@ class accum {
 template <typename T>
 void disp_v(vector<T> & v) {
     if(!v.size()) return;
-    for(T e :  v) { cout << e << " "; }
+    for (T e :  v) { cout << e << " "; }
     cout << endl;
 }
 

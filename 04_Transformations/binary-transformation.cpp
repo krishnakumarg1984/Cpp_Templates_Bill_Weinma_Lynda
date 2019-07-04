@@ -15,8 +15,8 @@ class embiggen {
 
 template <typename T>
 void disp_v(vector<T> & v) {
-    if(!v.size()) return;
-    for(T e :  v) { cout << e << " "; }
+    if (!v.size()) return;
+    for (T e :  v) { cout << e << " "; }
     cout << endl;
 }
 
@@ -30,7 +30,7 @@ int main() {
     disp_v(v1);
     disp_v(v2);
     disp_v(v3);
-    cout << endl;
+    std::cout << endl;
 
     // 2 src & 1 desination for this binary transformation
     // transform(v1.begin(), v1.end(), v2.begin(), v3.begin(), fbig);

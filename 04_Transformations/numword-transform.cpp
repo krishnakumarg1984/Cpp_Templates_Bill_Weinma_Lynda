@@ -32,4 +32,4 @@ int main() {
     disp_v(words);
 
     return 0;
-
+}
