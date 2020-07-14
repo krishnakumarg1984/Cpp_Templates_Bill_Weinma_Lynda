@@ -1,0 +1,14 @@
+clang
+-ccc-install-dir
+/usr/local/Cellar/llvm/10.0.0_3/bin
+-Wall
+%c -std=c11
+%cc %cpp -std=c++17
+%cc %cpp -stdlib=libc++
+%cc %c %cpp -pthread
+%h -x
+%h c++-header
+%h %hpp --include=Global.h
+-Iinc
+-DMACRO
+-fPIC
