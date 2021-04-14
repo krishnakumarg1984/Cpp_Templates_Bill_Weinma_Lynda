@@ -1,0 +1,186 @@
+# vim: set fenc=utf-8 ft=dosini:
+
+# define a new task named "file-build"
+[file-build]
+
+# shell command, use quotation for filenames containing spaces
+# check ":AsyncTaskMacro" to see available macros
+; command=g++ -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+command=echo unsupported filetype $(VIM_FILETYPE)
+command:c,cpp/win32=gcc -O2 -Wall -fstrict-aliasing "$(VIM_FILEPATH)" -o "$(VIM_PATHNOEXT)" -lstdc++ -lm -lwinmm -lgdi32 -lws2_32 -msse3 -liphlpapi -ld3d9 -ld3dx9 -std=c++17
+command:c,cpp/linux=gcc -O2 -Wall -fstrict-aliasing "$(VIM_FILEPATH)" -o "$(VIM_PATHNOEXT)" -lstdc++ -lm -msse3 -ldl -lpthread -std=c++17
+command:go/win32=go build -o "$(VIM_PATHNOEXT).exe" "$(VIM_FILEPATH)"
+command:go/linux=go build -o "$(VIM_PATHNOEXT)" "$(VIM_FILEPATH)"
+; command:c,cpp=gcc -O2 -Wall "$(VIM_FILEPATH)" -o "$(VIM_PATHNOEXT)" -lstdc++ -lm -msse3
+; command:go=go build -o "$(VIM_PATHNOEXT)" "$(VIM_FILEPATH)"
+command:make=make -f "$(VIM_FILEPATH)"
+command:rust/win32=rustc "$(VIM_FILEPATH)" -o "$(VIM_PATHNOEXT).exe"
+command:rust/linux=rustc "$(VIM_FILEPATH)" -o "$(VIM_PATHNOEXT)"
+
+# working directory, can change to $(VIM_ROOT) for project root
+cwd=$(VIM_FILEDIR)
+
+# output mode, can be one of quickfix and terminal
+# - quickfix: output to quickfix window
+# - terminal: run the command in the internal terminal
+output=quickfix
+
+# this is for output=quickfix only
+# if it is omitted, vim's current errorformat will be used.
+errorformat=%f:%l:%m
+
+# save file before execute
+save=2
+
+[file-run]
+command="$(VIM_FILEPATH)"
+
+command:applescript=osascript "$(VIM_FILENAME)"
+command:bash=bash "$(VIM_FILENAME)"
+command:c,cpp="$(VIM_PATHNOEXT)"
+command:emake=emake -e "$(VIM_FILENAME)"
+command:erlang=escript "$(VIM_FILENAME)"
+command:fish=fish "$(VIM_FILENAME)"
+command:go="$(VIM_PATHNOEXT)"
+command:haskell=ghci "$(VIM_FILENAME)"
+command:javascript=node "$(VIM_FILENAME)"
+command:lua=lua "$(VIM_FILENAME)"
+command:make=make -f "$(VIM_FILENAME)" run
+command:perl=perl "$(VIM_FILENAME)"
+command:php=php "$(VIM_FILENAME)"
+command:ps1=powershell -file "$(VIM_FILENAME)"
+command:python=python "$(VIM_FILENAME)"
+command:python/linux=python3 "$(VIM_FILENAME)"
+command:ruby=ruby "$(VIM_FILENAME)"
+command:rust="$(VIM_PATHNOEXT)"
+command:scala=scala "$(VIM_FILENAME)"
+command:sh=sh "$(VIM_FILENAME)"
+command:vb=cscript /nologo "$(VIM_FILENAME)"
+command:vim=:source %
+command:zsh=zsh "$(VIM_FILENAME)"
+output=terminal
+cwd=$(VIM_FILEDIR)
+save=2
+
+[make]
+command=make -f "$(VIM_FILEPATH)"
+cwd=$(VIM_FILEDIR)
+
+[make-run]
+command=make -f "$(VIM_FILEPATH)" run
+cwd=$(VIM_FILEDIR)
+output=terminal
+
+[make-test]
+command=make -f "$(VIM_FILEPATH)" test
+cwd=$(VIM_FILEDIR)
+output=terminal
+
+[emake]
+command=emake --abs "$(VIM_FILEPATH)"
+cwd=$(VIM_FILEDIR)
+save=2
+
+[emake-clean]
+command=emake -clean "$(VIM_FILEPATH)"
+cwd=$(VIM_FILEDIR)
+
+[emake-exe]
+command=emake -e "$(VIM_FILEPATH)"
+cwd=$(VIM_FILEDIR)
+output=terminal
+
+[emake-auto]
+command=emake --abs "$(VIM_FILENAME)"
+command:make=make -f "$(VIM_FILENAME)"
+cwd=$(VIM_FILEDIR)
+
+[project-build]
+command=make
+cwd=$(VIM_ROOT)
+
+[project-run]
+command=make run
+cwd=$(VIM_ROOT)
+output=terminal
+
+[project-test]
+command=make test
+cwd=$(VIM_ROOT)
+output=terminal
+
+# project-wide search, ask user input keyword
+[grep-word]
+command=rg -n --no-heading --color never "$(?keyword)" "<root>" -tc -tcpp -tpy -tvim -tgo -tasm -tlua -tjs
+cwd=<root>
+errorformat=%f:%l:%m
+
+# project-wide search, search the word under cursor
+[grep-cword]
+command=rg -n --no-heading --color never "$(VIM_CWORD)" "<root>" -tc -tcpp -tpy -tvim -tgo -tasm -tlua -tjs
+cwd=<root>
+errorformat=%f:%l:%m
+
+[vc-2015]
+command/win32=d:\dev\vc2015\vcvarsall.cmd cl.exe -nologo -O2 -EHsc "$(VIM_FILEPATH)"
+cwd=$(VIM_FILEDIR)
+errorformat=%f(%l):%m
+
+[vc-2017]
+command/win32=d:\dev\vc2017\vcvarsall.cmd cl.exe -nologo -O2 /arch:AVX "$(VIM_FILEPATH)" -o "$(VIM_PATHNOEXT).exe"
+cwd=$(VIM_FILEDIR)
+errorformat=%f(%l):%m
+
+
+[project-init]
+command=mkdir build && cd build && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 .. && ln -s compile_commands.json ..
+cwd=<root>
+errorformat=
+
+[project-build]
+command=cmake --build build
+cwd=<root>
+errorformat=%f:%l:%m
+
+[project-run]
+command="build/$(VIM_PRONAME)"
+cwd=<root>
+output=terminal
+
+[project-build]
+command=make
+# set the working directory to the project root.
+cwd=$(VIM_ROOT)
+
+[project-run]
+command=make run
+# <root> is an alias to `$(VIM_ROOT)`, a little easier to type.
+cwd=<root>
+output=terminal
+
+
+[task1:release]
+command=gcc -O2 "$(VIM_FILEPATH)" -o "$(VIM_PATHNOEXT)"
+cwd=$(VIM_FILEDIR)
+
+[task1:debug]
+command=gcc -g "$(VIM_FILEPATH)" -o "$(VIM_PATHNOEXT)"
+cwd=$(VIM_FILEDIR)
+
+[wsl-file-build]
+command=gcc -O2 -Wall "$(WSL_FILEPATH)" -o "$(WSL_PATHNOEXT)" -lm -lpthread
+program=wsl
+
+[wsl-file-run]
+command="$(WSL_PATHNOEXT)"
+program=wsl
+output=terminal
+cwd=$(VIM_FILEDIR)
+
+[msys-file-build]
+command=gcc -O2 -Wall "$(MSYS_FILEPATH)" -o "$(MSYS_PATHNOEXT)" -lm -lpthread
+program=msys
+
+[mingw32-file-build]
+command=gcc -O2 -Wall "$(MSYS_FILEPATH)" -o "$(MSYS_PATHNOEXT)" -lm -lpthread
+program=mingw32
