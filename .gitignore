@@ -74,7 +74,7 @@ CMakeFiles/
 tags
 tags.*
 .ccls-*
-*.zip
+# *.zip
 *.tar.gz
 *.7z
 *.bzip
