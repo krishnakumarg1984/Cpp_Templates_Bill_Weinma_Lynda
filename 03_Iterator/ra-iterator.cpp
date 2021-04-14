@@ -7,12 +7,16 @@ using namespace std;
 // Random access iterator is the most complete iterator of them all. offers
 // all the functionality of a C-pointer
 
-void message(const char * m) { cout << m << endl; }
-void message(const char * m, int i) { cout << m << ": " << i << endl; }
+void message(const char* m) {
+    cout << m << endl;
+}
+void message(const char* m, int i) {
+    cout << m << ": " << i << endl;
+}
 
 int main() {
-    vector<int> v1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    vector<int>::iterator it1;   // iterator object
+    vector<int> v1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    vector<int>::iterator it1;  // iterator object
 
     // iterate forward
     for (it1 = v1.begin(); it1 != v1.end(); ++it1) {

@@ -8,12 +8,11 @@ using namespace std;
 
 template <typename T>
 // template <class T, class X>  // T & X are the template parameters
-T maxof(const T & a, const T & b) {
-    return ( a > b ? a : b );
+T maxof(const T& a, const T& b) {
+    return (a > b ? a : b);
 }
 
 int main() {
-
     int a = 7;
     int b = 9;
     cout << "max is " << maxof(a, b) << endl;

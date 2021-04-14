@@ -1,4 +1,6 @@
 ﻿---
-BasedOnStyle: Google
+BasedOnStyle: Chromium
+IndentWidth: '4'
+AllowShortFunctionsOnASingleLine: None
 
 ...

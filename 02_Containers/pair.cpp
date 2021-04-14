@@ -1,8 +1,8 @@
 // pair.cpp by Bill Weinman <http://bw.org/>
 // 2019-09-10 for CppSTL
 #include <iostream>
-#include <utility>  // The 'pair' data type is in the utility header
 #include <string>
+#include <utility>  // The 'pair' data type is in the utility header
 using namespace std;
 
 // Pairs & tuples are useful in cases where we wish to carry multiple,
@@ -10,24 +10,31 @@ using namespace std;
 // Tuples are available only from C++11
 
 // print the pair
-template<typename T1, typename T2>
-void printpair(pair<T1, T2> & p) {
-    cout << p.first << " : " << p.second << endl;  // Member variables (not member methods)
+template <typename T1, typename T2>
+void printpair(pair<T1, T2>& p) {
+    cout << p.first << " : " << p.second
+         << endl;  // Member variables (not member methods)
 }
 
 // print a simple message
-void message(const char * s) { cout << s << endl; }
-void message(const char * s, const int n) { cout << s << ": " << n << endl; }
+void message(const char* s) {
+    cout << s << endl;
+}
+void message(const char* s, const int n) {
+    cout << s << ": " << n << endl;
+}
 
 int main() {
     // initializer list
     message("initializer list");
-    pair<int, string> p1 = { 47, "forty-seven" };
+    pair<int, string> p1 = {47, "forty-seven"};
     printpair(p1);
 
     // default constructor
     message("default constructor");
-    pair<int, string> p2(72, "seventy-two");  // Values are being passed directly instead of using an initializer list as above
+    pair<int, string> p2(
+        72, "seventy-two");  // Values are being passed directly instead of
+                             // using an initializer list as above
     printpair(p2);
 
     // from make_pair

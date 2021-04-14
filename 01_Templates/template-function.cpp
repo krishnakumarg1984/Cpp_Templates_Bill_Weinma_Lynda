@@ -5,12 +5,13 @@
 using namespace std;
 
 // A template is a compiler abstraction that allows you to write generic code
-// that applies to various types of classes without concern for the details of the type
+// that applies to various types of classes without concern for the details of
+// the type
 
 // A template function
 template <typename T>  // The abstraction is the type T
-T maxof(const T & a, const T & b) {
-    return ( a > b ? a : b );
+T maxof(const T& a, const T& b) {
+    return (a > b ? a : b);
 }
 
 // int maxof(const int & a, const int & b) {
@@ -24,7 +25,7 @@ int main() {
 
     string a = "seven";
     string b = "nine";
-    cout << "max is " << maxof<string>( a, b ) << endl;
+    cout << "max is " << maxof<string>(a, b) << endl;
 
     return 0;
 }

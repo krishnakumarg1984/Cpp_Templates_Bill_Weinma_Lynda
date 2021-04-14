@@ -1,8 +1,8 @@
 // tuple.cpp by Bill Weinman <http://bw.org/>
 // 2019-11-04 for CppSTL
 #include <iostream>
-#include <tuple>  // The 'tuple' data type is in the tuple header
 #include <string>
+#include <tuple>  // The 'tuple' data type is in the tuple header
 using namespace std;
 
 // Tuples are available only from C++11
@@ -11,21 +11,26 @@ using namespace std;
 
 // print the elements of the tuple
 // can be of any different size, here we are using a 3-tuple
-template<typename T>
+template <typename T>
 void print3tuple(T t) {
     auto tsz = tuple_size<decltype(t)>::value;
-    if (tsz != 3) return;
+    if (tsz != 3)
+        return;
     cout << get<0>(t) << " : " << get<1>(t) << " : " << get<2>(t) << endl;
 }
 
 // print a simple message
-void message(const char * s) { cout << s << endl; }
-void message(const char * s, const int n) { cout << s << ": " << n << endl; }
+void message(const char* s) {
+    cout << s << endl;
+}
+void message(const char* s, const int n) {
+    cout << s << ": " << n << endl;
+}
 
 int main() {
     // initializer list
     message("initializer list");
-    tuple<int, string, int> t1 = { 47, "forty-seven", 1 };
+    tuple<int, string, int> t1 = {47, "forty-seven", 1};
     print3tuple(t1);
 
     // default constructor

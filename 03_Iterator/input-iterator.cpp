@@ -4,18 +4,22 @@
 #include <iterator>  // output & input iterators are defined here
 using namespace std;
 
-// An input iterator is the simplest form of iterator. May be used to read the value of an object once and then increment. Capable of reading, but not writing, incrementing but not decrementing. Once a value is read, it cannot be read again.
+// An input iterator is the simplest form of iterator. May be used to read the
+// value of an object once and then increment. Capable of reading, but not
+// writing, incrementing but not decrementing. Once a value is read, it cannot
+// be read again.
 
-
-void message(const char * m) { cout << m << endl; }
+void message(const char* m) {
+    cout << m << endl;
+}
 
 int main() {
     double d1 = 0, d2 = 0;
 
     cout << "Enter two numeric values: " << flush;
     cin.clear();
-    istream_iterator<double> eos;         // default constructor is end-of-stream
-    istream_iterator<double> iit(cin);    // stdin iterator
+    istream_iterator<double> eos;       // default constructor is end-of-stream
+    istream_iterator<double> iit(cin);  // stdin iterator
 
     if (iit == eos) {
         message("no values");

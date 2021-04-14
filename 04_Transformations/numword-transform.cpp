@@ -1,9 +1,9 @@
 // numword-transform.cpp by Bill Weinman <http://bw.org/>
 // 2018-09-27 for CppSTL
-#include <iostream>
-#include <vector>
 #include <algorithm>
+#include <iostream>
 #include <string>
+#include <vector>
 #include "numword.h"
 using namespace std;
 
@@ -11,19 +11,22 @@ using namespace std;
 // Here we transform a vector of integers to a vector of strings
 
 template <typename T>
-void disp_v(const T & v) {
-    if (!v.size()) return;
+void disp_v(const T& v) {
+    if (!v.size())
+        return;
     bool first = true;
     for (auto e : v) {
-        if(first) first = false;
-        else cout << ", ";
+        if (first)
+            first = false;
+        else
+            cout << ", ";
         cout << e;
     }
     cout << endl;
 }
 
 int main() {
-    const vector<uint64_t> nums = { 1, 2, 3, 4, 5, 60, 72, 847, 9001, 10002052 };
+    const vector<uint64_t> nums = {1, 2, 3, 4, 5, 60, 72, 847, 9001, 10002052};
     disp_v(nums);
 
     bw::numword nw;

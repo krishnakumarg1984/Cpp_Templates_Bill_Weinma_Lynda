@@ -1,15 +1,15 @@
 // forward-iterator.cpp by Bill Weinman <http://bw.org/>
 // 2018-09-18 for CppSTL
-#include <iostream>
 #include <forward_list>  // single linked list type. Efficient in iterating from beginning to end, but not the other way around
+#include <iostream>
 using namespace std;
 
 // More flexible than input or output iterators, since it can both read &
 // write, but still lacks direct access.
 
 int main() {
-    forward_list<int> fl1 = { 1, 2, 3, 4, 5 };
-    forward_list<int>::iterator it1;     // forward iterator
+    forward_list<int> fl1 = {1, 2, 3, 4, 5};
+    forward_list<int>::iterator it1;  // forward iterator
 
     // it1 = fl1.end();
     // --it1;

@@ -1,29 +1,35 @@
 // vector.cpp by Bill Weinman <http://bw.org/>
 // 2019-11-03 for CppSTL
 #include <iostream>
-#include <vector>
 #include <string>
+#include <vector>
 using namespace std;
 
 // MARK: - utility functions
 
 // print the elements of the vector
-template<typename T>
-void printv(vector<T> & v) {
-    if (v.empty()) return;
-    for (T &i : v) cout << i << " ";
+template <typename T>
+void printv(vector<T>& v) {
+    if (v.empty())
+        return;
+    for (T& i : v)
+        cout << i << " ";
     cout << endl;
 }
 
 // print a simple message
-void message(const char * s) { cout << s << endl; }
-void message(const char * s, const int n) { cout << s << ": " << n << endl; }
+void message(const char* s) {
+    cout << s << endl;
+}
+void message(const char* s, const int n) {
+    cout << s << ": " << n << endl;
+}
 
 // MARK: - main
 
 int main() {
     cout << "vector from initializer list: " << endl;
-    vector<int> v1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    vector<int> v1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     printv(v1);
 
     // info
@@ -58,7 +64,7 @@ int main() {
 
     // empty
     message("empty:");
-    vector<int> vx = { 1, 2, 3 };
+    vector<int> vx = {1, 2, 3};
     while (!vx.empty()) {
         printv(vx);
         vx.pop_back();
@@ -66,7 +72,7 @@ int main() {
 
     // clear
     message("clear:");
-    vx.insert(vx.begin(), { 1, 2, 3, 4, 5 });
+    vx.insert(vx.begin(), {1, 2, 3, 4, 5});
     printv(vx);
     // message("vx size", (int) vx.size());
     message("vx size", static_cast<int>(vx.size()));
@@ -79,14 +85,15 @@ int main() {
 
     // from C-array
     constexpr size_t size = 10;
-    int ia[size] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    int ia[size] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     message("vector from C-array:");
     vector<int> v2(ia, ia + size);
     printv(v2);
 
     // filled with strings
     message("vector filled with string:");
-    vector<string> v3(5, "string");  // 5 is the no. of times the string will be repeated
+    vector<string> v3(
+        5, "string");  // 5 is the no. of times the string will be repeated
     printv(v3);
 
     // copy constructor

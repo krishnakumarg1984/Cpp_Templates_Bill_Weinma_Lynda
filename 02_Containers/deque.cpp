@@ -1,18 +1,19 @@
 // deque.cpp by Bill Weinman <http://bw.org/>
 // updated 2018-11-04 for CppSTL
-#include <iostream>
 #include <deque>
+#include <iostream>
 #include <string>
 using namespace std;
 
 // semantics of a vector, but optimised as a double ended queue
 // report deque info
 // Vector is optimised for random access, but deque is optimised for rapid
-// push & pop from both its ends, which is why it is the default container for stacks and queues
-// However,deque has got full random access & iterator capabilities
+// push & pop from both its ends, which is why it is the default container for
+// stacks and queues However,deque has got full random access & iterator
+// capabilities
 
 template <typename T>
-void reportdeq(T & d) {
+void reportdeq(T& d) {
     size_t sz = d.size();
     cout << "size: " << sz;
     if (sz)
@@ -22,7 +23,7 @@ void reportdeq(T & d) {
 
 // print deque
 template <typename T>
-void printdeq(T & d) {
+void printdeq(T& d) {
     if (d.empty())
         return;
     for (auto v : d)
@@ -31,7 +32,9 @@ void printdeq(T & d) {
 }
 
 // print a simple message
-void message(const char * s) { cout << s << endl; }
+void message(const char* s) {
+    cout << s << endl;
+}
 
 int main() {
     message("create deque");

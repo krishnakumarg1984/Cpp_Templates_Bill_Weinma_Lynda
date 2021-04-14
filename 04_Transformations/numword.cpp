@@ -9,17 +9,17 @@ numword::~numword() {
 }
 
 // assignment operator
-numnum numword::operator = ( const numnum num ) {
+numnum numword::operator=(const numnum num) {
     setnum(num);
     return getnum();
 }
 
-const char * numword::words() {
+const char* numword::words() {
     return words(_num);
 }
 
 // convert to words
-const char * numword::words( const numnum num ) {
+const char* numword::words(const numnum num) {
     if (num > _maxnum) {
         return errnum;
     }
@@ -29,12 +29,12 @@ const char * numword::words( const numnum num ) {
         appendbuf(_singles[n]);
         return _buf;
     }
-    
+
     // powers of 1000
     if (n >= 1000) {
-        for(int i = 5; i > 0; --i) {
-            numnum power = (numnum) pow(1000.0, i);
-            numnum _n = ( n - ( n % power ) ) / power;
+        for (int i = 5; i > 0; --i) {
+            numnum power = (numnum)pow(1000.0, i);
+            numnum _n = (n - (n % power)) / power;
             if (_n) {
                 int index = i;
                 numword _nw(_n);
@@ -48,7 +48,7 @@ const char * numword::words( const numnum num ) {
     }
     // hundreds
     if (n >= 100 && n < 1000) {
-        numnum _n = ( n - ( n % 100 ) ) / 100;
+        numnum _n = (n - (n % 100)) / 100;
         numword _nw(_n);
         appendspace();
         appendbuf(_nw.words());
@@ -58,7 +58,7 @@ const char * numword::words( const numnum num ) {
     }
     // tens
     if (n >= 20 && n < 100) {
-        numnum _n = ( n - ( n % 10 ) ) / 10;
+        numnum _n = (n - (n % 10)) / 10;
         appendspace();
         appendbuf(_tens[_n]);
         n -= _n * 10;
@@ -92,7 +92,7 @@ void numword::clearbuf() {
 // initialize the buffer
 void numword::initbuf() {
     clearbuf();
-    _buf = (char *) malloc(_maxstr);
+    _buf = (char*)malloc(_maxstr);
     *_buf = 0;
     hyphen_flag = false;
 }
@@ -100,14 +100,15 @@ void numword::initbuf() {
 // append space (or hyphen)
 void numword::appendspace() {
     if (_buflen) {
-        appendbuf( hyphen_flag ? _hyphen : _space);
+        appendbuf(hyphen_flag ? _hyphen : _space);
         hyphen_flag = false;
     }
 }
 
 // append text to the string buffer
-void numword::appendbuf(const char * s) {
-    if(!s) return;
+void numword::appendbuf(const char* s) {
+    if (!s)
+        return;
     size_t slen = strnlen(s, _maxstr);
     if (slen < 1) {
         return;

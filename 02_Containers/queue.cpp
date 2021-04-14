@@ -1,8 +1,8 @@
 // queue.cpp by Bill Weinman <http://bw.org/>
 // updated 2018-09-14 for CppSTL
+#include <deque>
 #include <iostream>
 #include <list>
-#include <deque>
 #include <queue>
 #include <string>
 using namespace std;
@@ -14,7 +14,7 @@ using namespace std;
 // Not a random access container
 
 template <typename T>
-void report_queue(T & q) {
+void report_queue(T& q) {
     size_t sz = q.size();
     cout << "size: " << sz;
     if (sz)
@@ -23,7 +23,9 @@ void report_queue(T & q) {
 }
 
 // print a simple message
-void message(const char * s) { cout << s << endl; }
+void message(const char* s) {
+    cout << s << endl;
+}
 
 int main() {
     // queue from list (list as underlying container)
@@ -32,10 +34,11 @@ int main() {
     // queue<int, list<int>> q1(l1);    // constructor copies to new list
     // report_queue(q1);
 
-    // But the default container for a queue is a deque since it is optimized for this kind of use. This is why deque even exists
+    // But the default container for a queue is a deque since it is optimized
+    // for this kind of use. This is why deque even exists
     message("initialize queue from deque");
     deque<int> l1 = {1, 2, 3, 4, 5};
-    queue<int, deque<int>> q1(l1);    // constructor copies to new deque
+    queue<int, deque<int>> q1(l1);  // constructor copies to new deque
     report_queue(q1);
 
     message("pop all from q1");
@@ -47,9 +50,10 @@ int main() {
     report_queue(q1);
 
     // default queue (deque)
-    queue<string> q2; // Note: unlike above, the underlying container is not specified
+    queue<string>
+        q2;  // Note: unlike above, the underlying container is not specified
     message("push strings onto q2");
-    for ( string s : {"one", "two", "three", "four", "five", "six"} ) {
+    for (string s : {"one", "two", "three", "four", "five", "six"}) {
         q2.push(s);
     }
     report_queue(q2);

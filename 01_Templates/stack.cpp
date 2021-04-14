@@ -14,14 +14,15 @@ Stack<T>::Stack(int s) {
 }
 
 template <typename T>
-T & Stack<T>::push(const T & i) {
-    if (isFull()) throw StackExeption("stack full");
+T& Stack<T>::push(const T& i) {
+    if (isFull())
+        throw StackExeption("stack full");
     return stackPtr[++_top] = i;
 }
 
 template <typename T>
-T & Stack<T>::pop() {
-    if (isEmpty()) throw StackExeption("stack empty");
+T& Stack<T>::pop() {
+    if (isEmpty())
+        throw StackExeption("stack empty");
     return stackPtr[_top--];
 }
-

@@ -8,8 +8,8 @@ using namespace std;
 // right at the beginning
 
 int main() {
-    set<int> set1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    set<int>::iterator it1;   // iterator object
+    set<int> set1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    set<int>::iterator it1;  // iterator object
 
     // iterate forward
     for (it1 = set1.begin(); it1 != set1.end(); ++it1) {
@@ -19,8 +19,9 @@ int main() {
 
     // iterate backward
     for (it1 = set1.end(); it1 != set1.begin();) {
-        // The .end() function returns past the end, whilst .begin() returns an iterator
-        // right at the beginning. Hence, we need the decrement operator here.
+        // The .end() function returns past the end, whilst .begin() returns an
+        // iterator right at the beginning. Hence, we need the decrement
+        // operator here.
         cout << *--it1 << " ";
     }
     cout << endl;
